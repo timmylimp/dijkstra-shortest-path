@@ -1,4 +1,5 @@
 ﻿using Dijkstra.Graph.Utils;
+using RandomNameGeneratorLibrary;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -39,7 +40,12 @@ namespace Dijkstra.Graph
 
         public bool EdgeExists(Edge edge)
         {
-            return _Edges.Exists(e=>e.Source.CompareTo(edge.Source) == 0 && e.Destination.CompareTo(edge.Destination) == 0);
+            return _Edges.Exists(e =>
+                {
+                    return (e.Source.CompareTo(edge.Source) == 0 && e.Destination.CompareTo(edge.Destination) == 0) ||
+                           (e.Source.CompareTo(edge.Destination) == 0 && e.Destination.CompareTo(edge.Source) == 0);
+                }
+            );
         }
 
         public void AddNode(Node node)
@@ -73,6 +79,47 @@ namespace Dijkstra.Graph
 
         }
 
+        public void GenerateRandomGraph(int nodeCount = 6,
+            double edgePropabality = 0.5,
+            int minDistance = 1,
+            int maxDistance = 1000)
+        {
+            if (nodeCount <= 0)
+                throw new ArgumentOutOfRangeException("nodeCount should be greater than 0.");
 
+            _Nodes.Clear();
+            _Edges.Clear();
+            GenerateNodes(nodeCount);
+            GenerateEdges(edgePropabality, minDistance, maxDistance);
+        }
+
+        private void GenerateNodes(int nodeCount)
+        {
+            while (_Nodes.Count < nodeCount)
+            {
+                AddNode(new Node { Name = RandomUtils.NextPlaceName() });
+            }
+        }
+
+        private void GenerateEdges(double edgePropabality,
+            int minDistance,
+            int maxDistance)
+        {
+            for (int i = 0; i < _Nodes.Count; i++)
+            {
+                for (int j = i + 1; j < _Nodes.Count; j++)
+                {
+                    if (RandomUtils.NextAppearance(edgePropabality))
+                        continue;
+
+                    var edge = new Edge
+                    {
+                        Source = _Nodes[i],
+                        Destination = _Nodes[j],
+                        Weight = RandomUtils.NextDistance(minDistance, maxDistance)
+                    };
+                }
+            }
+        }
     }
 }
