@@ -20,15 +20,16 @@ namespace Dijkstra.Graph
             Console.WriteLine("[Paths]");
             foreach (var n in DistanceToNodes.Keys)
             {
-                PrintPathTo(n);
+                Console.WriteLine(ShowPathTo(n));
             }
             Console.WriteLine("-----------------------------------");
         }
 
-        public void PrintPathTo(Node target)
+        public string ShowPathTo(Node target)
         {
             Stack<Node> Path = new Stack<Node>();
             var node = target;
+
             while(node != null)
             {
                 Path.Push(node);
@@ -36,14 +37,16 @@ namespace Dijkstra.Graph
             }
 
             if (Path.Peek() != Start)
-                Console.WriteLine("There's no way to {0}.", target);
+                return String.Format("There's no way to {0}.", target);
             else
             {
+                StringBuilder path = new StringBuilder();
                 foreach (var n in Path)
                 {
-                    Console.Write(" >> {0} ", n);
+                    path.AppendFormat("{0} ", n);
                 }
-                Console.WriteLine(" = {0}", DistanceToNodes[target]);
+                path.AppendFormat("= {0}", DistanceToNodes[target]);
+                return path.ToString();
             }
         }
     }
