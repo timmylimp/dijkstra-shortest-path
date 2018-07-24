@@ -1,5 +1,4 @@
 ﻿using Dijkstra.Graph.Utils;
-using RandomNameGeneratorLibrary;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -51,6 +50,8 @@ namespace Dijkstra.Graph
 
         public void AddNode(Node node)
         {
+            if (!node.TryValidate(out List<ValidationResult> validationResult))
+                throw new ArgumentException(validationResult.ToFlatternMessage());
             if (node != null && !NodeExists(node))
                 _Nodes.Add(node);
         }

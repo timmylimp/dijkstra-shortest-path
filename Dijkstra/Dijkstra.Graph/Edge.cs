@@ -11,7 +11,7 @@ namespace Dijkstra.Graph
         [Required]
         public Node Destination { get; set; }
 
-        [Range(0, int.MaxValue)]
+        [Range(0, int.MaxValue, ErrorMessage = "The field Weight must be greater or equal 0.")]
         public int Weight { get; set; }
 
         public int CompareTo(Edge other)

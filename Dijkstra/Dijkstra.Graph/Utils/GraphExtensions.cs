@@ -12,7 +12,7 @@ namespace Dijkstra.Graph.Utils
             var context = new ValidationContext(item, serviceProvider: null, items: null);
             validationResults = new List<ValidationResult>();
 
-            var isValid = Validator.TryValidateObject(item, context, validationResults);
+            var isValid = Validator.TryValidateObject(item, context, validationResults, true);
             return isValid;
         }
 
