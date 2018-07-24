@@ -12,5 +12,10 @@ namespace Dijkstra.Graph
         {
             return Name.CompareTo(other.Name);
         }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

@@ -3,6 +3,7 @@ using RandomNameGeneratorLibrary;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Dijkstra.Graph
 {
@@ -79,6 +80,20 @@ namespace Dijkstra.Graph
 
         }
 
+        public IEnumerable<Edge> GetEdgesToNeighbors(Node node)
+        {
+            foreach (var e in _Edges.Where(e => e.Source.CompareTo(node) == 0))
+            {
+                yield return e;
+            }
+            foreach (var e in _Edges.Where(e => e.Destination.CompareTo(node) == 0))
+            {
+                e.Destination = e.Source;
+                e.Source = node;
+                yield return e;
+            }
+        }
+
         public void GenerateRandomGraph(int nodeCount = 6,
             double edgePropabality = 0.5,
             int minDistance = 1,
@@ -91,6 +106,24 @@ namespace Dijkstra.Graph
             _Edges.Clear();
             GenerateNodes(nodeCount);
             GenerateEdges(edgePropabality, minDistance, maxDistance);
+        }
+
+        public void PrintGraph()
+        {
+            Console.WriteLine("[Graph]: ");
+            Console.WriteLine("<<< Nodes >>> ");
+            foreach (var node in Nodes)
+            {
+                Console.WriteLine(node);
+            }
+            Console.WriteLine("-----------------------------------");
+
+            Console.WriteLine("<<< Edges >>> ");
+            foreach (var edge in Edges)
+            {
+                Console.WriteLine(edge);
+            }
+            Console.WriteLine("-----------------------------------");
         }
 
         private void GenerateNodes(int nodeCount)
@@ -118,6 +151,7 @@ namespace Dijkstra.Graph
                         Destination = _Nodes[j],
                         Weight = RandomUtils.NextDistance(minDistance, maxDistance)
                     };
+                    _Edges.Add(edge);
                 }
             }
         }
