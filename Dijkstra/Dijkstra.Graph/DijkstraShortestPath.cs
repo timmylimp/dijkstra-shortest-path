@@ -32,7 +32,15 @@ namespace Dijkstra.Graph
                 foreach (var e in graph.GetEdgesToNeighbors(u))
                 {
                     var v = e.Destination;
-                    var alt = distanceToNodes[u] + e.Weight;
+                    int alt;
+                    try
+                    {
+                        alt = checked(distanceToNodes[u] + e.Weight);
+                    }
+                    catch
+                    {
+                        alt = int.MaxValue;
+                    }
                     if (alt < distanceToNodes[v])
                     {
                         distanceToNodes[v] = alt;
