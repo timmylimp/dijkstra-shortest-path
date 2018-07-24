@@ -18,5 +18,10 @@ namespace Dijkstra.Graph
         {
             return Weight - other.Weight;
         }
+
+        public override string ToString()
+        {
+            return string.Format("{0} <-> {1} = {2}", Source.Name, Destination.Name, Weight);
+        }
     }
 }
