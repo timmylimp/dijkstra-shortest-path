@@ -7,6 +7,16 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\CSProject\dijkstra-shortest-path\Dijkstra\Dijkstra.Graph\Dijkstra.Graph.xml</DocumentationFile>
+    <WarningLevel>3</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <WarningLevel>3</WarningLevel>
+    <DocumentationFile>D:\CSProject\dijkstra-shortest-path\Dijkstra\Dijkstra.Graph\Dijkstra.Graph.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="OptimizedPriorityQueue" Version="4.1.1" />
     <PackageReference Include="RandomNameGeneratorLibrary" Version="1.2.2" />

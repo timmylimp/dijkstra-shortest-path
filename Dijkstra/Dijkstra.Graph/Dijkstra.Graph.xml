@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Dijkstra.Graph</name>
+    </assembly>
+    <members>
+        <member name="M:Dijkstra.Graph.DijkstraShortestPath.FindShortestPath(Dijkstra.Graph.Node,Dijkstra.Graph.Graph)">
+            <summary>
+            Calculate the shortest path with Dijkstra's algorithm.
+            </summary>
+            <param name="start">Node to start finding shortest path</param>
+            <param name="graph">Graph represent nodes and edges linking nodes.</param>
+            <returns>ShortestPathResult from start node to other nodes in the graph.</returns>
+        </member>
+        <member name="T:Dijkstra.Graph.Edge">
+            <summary>
+            Link between 2 nodes.
+            </summary>
+        </member>
+        <member name="M:Dijkstra.Graph.Edge.CompareTo(Dijkstra.Graph.Edge)">
+            <summary>
+            Compare node to other with weight.
+            </summary>
+            <param name="other"></param>
+            <returns>Negative integer if weight is less than other node. 0 if weight equals to other node. Otherwise positive integer.</returns>
+        </member>
+        <member name="T:Dijkstra.Graph.Graph">
+            <summary>
+            Collection of Nodes and Edges. This represent undirected graph.
+            </summary>
+        </member>
+        <member name="M:Dijkstra.Graph.Graph.NodeExists(Dijkstra.Graph.Node)">
+            <summary>
+            Check if input node is in graph.
+            </summary>
+            <param name="node"></param>
+            <returns>True if graph have node Name exactly matched to input node. Otherwise false.</returns>
+        </member>
+        <member name="M:Dijkstra.Graph.Graph.EdgeExists(Dijkstra.Graph.Edge)">
+            <summary>
+            Check if input edge is in graph
+            </summary>
+            <param name="edge"></param>
+            <returns>True if graph have Source or Destination as same as input edge. Otherwise false. The Source snd Destination can swaped because this is undirected graph.</returns>
+        </member>
+        <member name="M:Dijkstra.Graph.Graph.AddNode(Dijkstra.Graph.Node)">
+            <summary>
+            Add a valid node into graph.
+            </summary>
+            <param name="node"></param>
+        </member>
+        <member name="M:Dijkstra.Graph.Graph.AddEdge(Dijkstra.Graph.Edge)">
+            <summary>
+            Add a valid edge into graph.
+            </summary>
+            <param name="edge"></param>
+        </member>
+        <member name="M:Dijkstra.Graph.Graph.GetEdgesToNeighbors(Dijkstra.Graph.Node)">
+            <summary>
+            Get all edges linking to input node.
+            </summary>
+            <param name="node"></param>
+            <returns>Edges which connect to input node and swap input node to Source of edge.</returns>
+        </member>
+        <member name="M:Dijkstra.Graph.Graph.GenerateRandomGraph(System.Int32,System.Double,System.Int32,System.Int32)">
+            <summary>
+            Generate dummy graph randomly.
+            </summary>
+            <param name="nodeCount">Number of nodes in the graph. Must be greater than 0.</param>
+            <param name="edgePropabality">Probability of the edge to be generate. The more number is more edges. This must be double from 0 to 1.</param>
+            <param name="minDistance">The smallest edge weight in graph to be randomed. Must be greater than 0.</param>
+            <param name="maxDistance">The largest edge weight in graph to be randomed. Mustbe greater or equal minDistance.</param>
+        </member>
+        <member name="M:Dijkstra.Graph.Graph.PrintGraph">
+            <summary>
+            Print graph to console.
+            </summary>
+        </member>
+        <member name="M:Dijkstra.Graph.Graph.GenerateNodes(System.Int32)">
+            <summary>
+            Generate node with random name.
+            </summary>
+            <param name="nodeCount">Number of nodes to be generated. Must be greater than 1.</param>
+        </member>
+        <member name="M:Dijkstra.Graph.Graph.GenerateEdges(System.Double,System.Int32,System.Int32)">
+            <summary>
+            Generate edges randomly.
+            </summary>
+            <param name="edgePropabality">Probability of the edge to be generate. The more number is more edges. This must be double from 0 to 1.</param>
+            <param name="minDistance">The smallest edge weight in graph to be randomed. Must be greater than 0.</param>
+            <param name="maxDistance">The largest edge weight in graph to be randomed. Mustbe greater or equal minDistance.</param>
+        </member>
+        <member name="T:Dijkstra.Graph.Node">
+            <summary>
+            Node in graph.
+            </summary>
+        </member>
+        <member name="M:Dijkstra.Graph.Node.CompareTo(Dijkstra.Graph.Node)">
+            <summary>
+            Compare node name to other node.
+            </summary>
+            <param name="other"></param>
+            <returns>Negative integer if Name is less than other Name. 0 if Name equals to other name. Otherwise positive integer.</returns>
+        </member>
+        <member name="M:Dijkstra.Graph.ShortestPathResult.ShowPathTo(Dijkstra.Graph.Node)">
+            <summary>
+            Path from Start node to the input target.
+            </summary>
+            <param name="target"></param>
+            <returns>Sequence of nodes to target with distance.</returns>
+        </member>
+        <member name="M:Dijkstra.Graph.Utils.GraphExtensions.TryValidate``1(``0,System.Collections.Generic.List{System.ComponentModel.DataAnnotations.ValidationResult}@)">
+            <summary>
+            Validate the class with DataAnnotation.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="item"></param>
+            <param name="validationResults">Validate result output</param>
+            <returns>True if valid. Otherwise false.</returns>
+        </member>
+        <member name="M:Dijkstra.Graph.Utils.GraphExtensions.ToFlatternMessage(System.Collections.Generic.IEnumerable{System.ComponentModel.DataAnnotations.ValidationResult})">
+            <summary>
+            Make collection of ValidationResult easier to read.
+            </summary>
+            <param name="validationResults"></param>
+            <returns>String describe all invalid result.</returns>
+        </member>
+        <member name="M:Dijkstra.Graph.Utils.RandomUtils.NextDistance(System.Int32,System.Int32)">
+            <summary>
+            Random distance between node.
+            </summary>
+            <param name="minDistance"></param>
+            <param name="maxDistance"></param>
+            <returns>Random integer from minDistance to maxDistance</returns>
+        </member>
+        <member name="M:Dijkstra.Graph.Utils.RandomUtils.NextAppearance(System.Double)">
+            <summary>
+            Random if it should be appear.
+            </summary>
+            <param name="percentage">Double from 0 to 1. The more is the more chance to be true.</param>
+            <returns>True if random value is less than input percentage. Otherwise false.</returns>
+        </member>
+        <member name="M:Dijkstra.Graph.Utils.RandomUtils.NextPlaceName">
+            <summary>
+            Generate a place name randomly.
+            </summary>
+            <returns>Random place name</returns>
+        </member>
+    </members>
+</doc>
