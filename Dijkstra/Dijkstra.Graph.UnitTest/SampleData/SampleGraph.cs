@@ -10,26 +10,26 @@ namespace Dijkstra.Graph.UnitTest.SampleData
         public ShortestPathResult ShortestPathResultA;
         public ShortestPathResult ShortestPathResultG;
 
-        public Node NodeA = new Node { Name = "A" };
-        public Node NodeB = new Node { Name = "B" };
-        public Node NodeC = new Node { Name = "C" };
-        public Node NodeD = new Node { Name = "D" };
-        public Node NodeE = new Node { Name = "E" };
-        public Node NodeF = new Node { Name = "F" };
-        public Node NodeG = new Node { Name = "G" };
-        public Node InvalidNode = new Node { Name = "" };
+        public Node NodeA;
+        public Node NodeB;
+        public Node NodeC;
+        public Node NodeD;
+        public Node NodeE;
+        public Node NodeF;
+        public Node NodeG;
+        public Node InvalidNode;
 
-        public Edge EdgeAB = new Edge { Source = SampleNodes.NodeA, Destination = SampleNodes.NodeB, Weight = 1 };
-        public Edge EdgeAC = new Edge { Source = SampleNodes.NodeA, Destination = SampleNodes.NodeC, Weight = 2 };
-        public Edge EdgeBC = new Edge { Source = SampleNodes.NodeB, Destination = SampleNodes.NodeC, Weight = 1 };
-        public Edge EdgeBE = new Edge { Source = SampleNodes.NodeB, Destination = SampleNodes.NodeE, Weight = 2 };
-        public Edge EdgeBD = new Edge { Source = SampleNodes.NodeB, Destination = SampleNodes.NodeD, Weight = 3 };
-        public Edge EdgeCD = new Edge { Source = SampleNodes.NodeC, Destination = SampleNodes.NodeD, Weight = 1 };
-        public Edge EdgeCE = new Edge { Source = SampleNodes.NodeC, Destination = SampleNodes.NodeE, Weight = 2 };
-        public Edge EdgeDE = new Edge { Source = SampleNodes.NodeD, Destination = SampleNodes.NodeE, Weight = 4 };
-        public Edge EdgeDF = new Edge { Source = SampleNodes.NodeD, Destination = SampleNodes.NodeF, Weight = 3 };
-        public Edge EdgeEF = new Edge { Source = SampleNodes.NodeE, Destination = SampleNodes.NodeF, Weight = 3 };
-        public Edge InvalidEdge = new Edge { Source = SampleNodes.NodeA, Destination = SampleNodes.NodeB, Weight = -1 };
+        public Edge EdgeAB;
+        public Edge EdgeAC;
+        public Edge EdgeBC;
+        public Edge EdgeBE;
+        public Edge EdgeBD;
+        public Edge EdgeCD;
+        public Edge EdgeCE;
+        public Edge EdgeDE;
+        public Edge EdgeDF;
+        public Edge EdgeEF;
+        public Edge InvalidEdge;
 
         private static SampleGraph _Instance;
         public static SampleGraph Instance
@@ -44,6 +44,26 @@ namespace Dijkstra.Graph.UnitTest.SampleData
 
         private SampleGraph()
         {
+            NodeA = new Node { Name = "A" };
+            NodeB = new Node { Name = "B" };
+            NodeC = new Node { Name = "C" };
+            NodeD = new Node { Name = "D" };
+            NodeE = new Node { Name = "E" };
+            NodeF = new Node { Name = "F" };
+            NodeG = new Node { Name = "G" };
+            InvalidNode = new Node { Name = "" };
+
+            EdgeAB = new Edge { Source = NodeA, Destination = NodeB, Weight = 1 };
+            EdgeAC = new Edge { Source = NodeA, Destination = NodeC, Weight = 2 };
+            EdgeBC = new Edge { Source = NodeB, Destination = NodeC, Weight = 1 };
+            EdgeBE = new Edge { Source = NodeB, Destination = NodeE, Weight = 2 };
+            EdgeBD = new Edge { Source = NodeB, Destination = NodeD, Weight = 3 };
+            EdgeCD = new Edge { Source = NodeC, Destination = NodeD, Weight = 1 };
+            EdgeCE = new Edge { Source = NodeC, Destination = NodeE, Weight = 2 };
+            EdgeDE = new Edge { Source = NodeD, Destination = NodeE, Weight = 4 };
+            EdgeDF = new Edge { Source = NodeD, Destination = NodeF, Weight = 3 };
+            EdgeEF = new Edge { Source = NodeE, Destination = NodeF, Weight = 3 };
+            InvalidEdge = new Edge { Source = NodeA, Destination = NodeB, Weight = -1 };
             Graph = new Graph();
 
             Graph.AddNode(NodeA);
