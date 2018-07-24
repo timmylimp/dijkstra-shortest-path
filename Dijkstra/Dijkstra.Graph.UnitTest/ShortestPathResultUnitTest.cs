@@ -26,7 +26,7 @@ namespace Dijkstra.Graph.UnitTest
         {
             var path = _SampleData.ShortestPathResultA.ShowPathTo(_SampleData.NodeB);
 
-            Assert.AreEqual("A B = 1", path);
+            Assert.AreEqual("A - B = 1", path);
         }
 
         [TestMethod]
@@ -34,7 +34,7 @@ namespace Dijkstra.Graph.UnitTest
         {
             var path = _SampleData.ShortestPathResultA.ShowPathTo(_SampleData.NodeC);
 
-            Assert.AreEqual("A C = 2", path);
+            Assert.AreEqual("A - C = 2", path);
         }
 
         [TestMethod]
@@ -42,7 +42,7 @@ namespace Dijkstra.Graph.UnitTest
         {
             var path = _SampleData.ShortestPathResultA.ShowPathTo(_SampleData.NodeD);
 
-            Assert.AreEqual("A C D = 3", path);
+            Assert.AreEqual("A - C - D = 3", path);
         }
 
         [TestMethod]
@@ -50,7 +50,7 @@ namespace Dijkstra.Graph.UnitTest
         {
             var path = _SampleData.ShortestPathResultA.ShowPathTo(_SampleData.NodeE);
 
-            Assert.AreEqual("A B E = 3", path);
+            Assert.AreEqual("A - B - E = 3", path);
         }
 
         [TestMethod]
@@ -58,7 +58,7 @@ namespace Dijkstra.Graph.UnitTest
         {
             var path = _SampleData.ShortestPathResultA.ShowPathTo(_SampleData.NodeF);
 
-            Assert.AreEqual("A C D F = 6", path);
+            Assert.AreEqual("A - C - D - F = 6", path);
         }
     }
 }

@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Dijkstra.Graph
 {
+    /// <summary>
+    /// Link between 2 nodes.
+    /// </summary>
     public class Edge:IComparable<Edge>
     {
         [Required]
@@ -14,6 +17,11 @@ namespace Dijkstra.Graph
         [Range(0, int.MaxValue, ErrorMessage = "The field Weight must be greater or equal 0.")]
         public int Weight { get; set; }
 
+        /// <summary>
+        /// Compare node to other with weight.
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns>Negative integer if weight is less than other node. 0 if weight equals to other node. Otherwise positive integer.</returns>
         public int CompareTo(Edge other)
         {
             return Weight - other.Weight;

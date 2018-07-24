@@ -7,6 +7,12 @@ namespace Dijkstra.Graph
 {
     public class DijkstraShortestPath
     {
+        /// <summary>
+        /// Calculate the shortest path with Dijkstra's algorithm.
+        /// </summary>
+        /// <param name="start">Node to start finding shortest path</param>
+        /// <param name="graph">Graph represent nodes and edges linking nodes.</param>
+        /// <returns>ShortestPathResult from start node to other nodes in the graph.</returns>
         public static ShortestPathResult FindShortestPath(Node start, Graph graph)
         {
             var distanceToNodes = new Dictionary<Node, int>();

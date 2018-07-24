@@ -25,6 +25,11 @@ namespace Dijkstra.Graph
             Console.WriteLine("-----------------------------------");
         }
 
+        /// <summary>
+        /// Path from Start node to the input target.
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns>Sequence of nodes to target with distance.</returns>
         public string ShowPathTo(Node target)
         {
             Stack<Node> Path = new Stack<Node>();
@@ -43,8 +48,9 @@ namespace Dijkstra.Graph
                 StringBuilder path = new StringBuilder();
                 foreach (var n in Path)
                 {
-                    path.AppendFormat("{0} ", n);
+                    path.AppendFormat("{0} - ", n);
                 }
+                path.Remove(path.Length - 2, 2);
                 path.AppendFormat("= {0}", DistanceToNodes[target]);
                 return path.ToString();
             }

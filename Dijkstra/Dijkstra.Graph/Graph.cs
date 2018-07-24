@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace Dijkstra.Graph
 {
+    /// <summary>
+    /// Collection of Nodes and Edges. This represent undirected graph.
+    /// </summary>
     public class Graph
     {
         private readonly List<Node> _Nodes;
@@ -33,11 +36,21 @@ namespace Dijkstra.Graph
             _Edges = new List<Edge>();
         }
 
+        /// <summary>
+        /// Check if input node is in graph.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns>True if graph have node Name exactly matched to input node. Otherwise false.</returns>
         public bool NodeExists(Node node)
         {
             return _Nodes.Exists(n => n.CompareTo(node) == 0);
         }
 
+        /// <summary>
+        /// Check if input edge is in graph
+        /// </summary>
+        /// <param name="edge"></param>
+        /// <returns>True if graph have Source or Destination as same as input edge. Otherwise false. The Source snd Destination can swaped because this is undirected graph.</returns>
         public bool EdgeExists(Edge edge)
         {
             return _Edges.Exists(e =>
@@ -48,6 +61,10 @@ namespace Dijkstra.Graph
             );
         }
 
+        /// <summary>
+        /// Add a valid node into graph.
+        /// </summary>
+        /// <param name="node"></param>
         public void AddNode(Node node)
         {
             if (node == null || !node.TryValidate(out List<ValidationResult> validationResult) || NodeExists(node))
@@ -56,6 +73,10 @@ namespace Dijkstra.Graph
             _Nodes.Add(node);
         }
 
+        /// <summary>
+        /// Add a valid edge into graph.
+        /// </summary>
+        /// <param name="edge"></param>
         public void AddEdge(Edge edge)
         {
             if (edge == null || EdgeExists(edge) || !edge.TryValidate(out List<ValidationResult> validationResult))
@@ -78,6 +99,11 @@ namespace Dijkstra.Graph
 
         }
 
+        /// <summary>
+        /// Get all edges linking to input node.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns>Edges which connect to input node and swap input node to Source of edge.</returns>
         public IEnumerable<Edge> GetEdgesToNeighbors(Node node)
         {
             foreach (var e in _Edges.Where(e => e.Source.CompareTo(node) == 0))
@@ -92,6 +118,13 @@ namespace Dijkstra.Graph
             }
         }
 
+        /// <summary>
+        /// Generate dummy graph randomly.
+        /// </summary>
+        /// <param name="nodeCount">Number of nodes in the graph. Must be greater than 0.</param>
+        /// <param name="edgePropabality">Probability of the edge to be generate. The more number is more edges. This must be double from 0 to 1.</param>
+        /// <param name="minDistance">The smallest edge weight in graph to be randomed. Must be greater than 0.</param>
+        /// <param name="maxDistance">The largest edge weight in graph to be randomed. Mustbe greater or equal minDistance.</param>
         public void GenerateRandomGraph(int nodeCount = 6,
             double edgePropabality = 0.5,
             int minDistance = 1,
@@ -106,6 +139,9 @@ namespace Dijkstra.Graph
             GenerateEdges(edgePropabality, minDistance, maxDistance);
         }
 
+        /// <summary>
+        /// Print graph to console.
+        /// </summary>
         public void PrintGraph()
         {
             Console.WriteLine("[Graph]: ");
@@ -124,6 +160,10 @@ namespace Dijkstra.Graph
             Console.WriteLine("-----------------------------------");
         }
 
+        /// <summary>
+        /// Generate node with random name.
+        /// </summary>
+        /// <param name="nodeCount">Number of nodes to be generated. Must be greater than 1.</param>
         private void GenerateNodes(int nodeCount)
         {
             while (_Nodes.Count < nodeCount)
@@ -132,6 +172,12 @@ namespace Dijkstra.Graph
             }
         }
 
+        /// <summary>
+        /// Generate edges randomly.
+        /// </summary>
+        /// <param name="edgePropabality">Probability of the edge to be generate. The more number is more edges. This must be double from 0 to 1.</param>
+        /// <param name="minDistance">The smallest edge weight in graph to be randomed. Must be greater than 0.</param>
+        /// <param name="maxDistance">The largest edge weight in graph to be randomed. Mustbe greater or equal minDistance.</param>
         private void GenerateEdges(double edgePropabality,
             int minDistance,
             int maxDistance)
