@@ -50,19 +50,16 @@ namespace Dijkstra.Graph
 
         public void AddNode(Node node)
         {
-            if (!node.TryValidate(out List<ValidationResult> validationResult))
-                throw new ArgumentException(validationResult.ToFlatternMessage());
-            if (node != null && !NodeExists(node))
-                _Nodes.Add(node);
+            if (node == null || !node.TryValidate(out List<ValidationResult> validationResult) || NodeExists(node))
+                return;
+
+            _Nodes.Add(node);
         }
 
         public void AddEdge(Edge edge)
         {
-            if (edge == null || EdgeExists(edge))
+            if (edge == null || EdgeExists(edge) || !edge.TryValidate(out List<ValidationResult> validationResult))
                 return;
-
-            if (!edge.TryValidate(out List<ValidationResult> validationResult))
-                throw new ArgumentException(validationResult.ToFlatternMessage());
 
             AddNode(edge.Source);
             AddNode(edge.Destination);
@@ -143,7 +140,7 @@ namespace Dijkstra.Graph
             {
                 for (int j = i + 1; j < _Nodes.Count; j++)
                 {
-                    if (RandomUtils.NextAppearance(edgePropabality))
+                    if (!RandomUtils.NextAppearance(edgePropabality))
                         continue;
 
                     var edge = new Edge
