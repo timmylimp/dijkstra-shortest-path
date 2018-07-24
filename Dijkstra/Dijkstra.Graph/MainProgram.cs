@@ -19,7 +19,8 @@ namespace Dijkstra.Graph
                 new Node { Name = "C" },
                 new Node { Name = "D" },
                 new Node { Name = "E" },
-                new Node { Name = "F" }
+                new Node { Name = "F" },
+                new Node { Name = "G" }
             };
 
             foreach (var n in Nodes)
@@ -36,10 +37,9 @@ namespace Dijkstra.Graph
                 new Edge { Source = Nodes[1], Destination = Nodes[4], Weight = 2 },
                 new Edge { Source = Nodes[2], Destination = Nodes[3], Weight = 1 },
                 new Edge { Source = Nodes[2], Destination = Nodes[4], Weight = 2 },
-                new Edge { Source = Nodes[3], Destination = Nodes[4], Weight = 4 }
-
-                //new Edge { Source = Nodes[3], Destination = Nodes[5], Weight = 3 },
-                //new Edge { Source = Nodes[4], Destination = Nodes[5], Weight = 3 },
+                new Edge { Source = Nodes[3], Destination = Nodes[4], Weight = 4 },
+                new Edge { Source = Nodes[3], Destination = Nodes[5], Weight = 3 },
+                new Edge { Source = Nodes[4], Destination = Nodes[5], Weight = 3 }
             };
 
             foreach (var e in Edges)
