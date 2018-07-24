@@ -123,7 +123,7 @@ namespace Dijkstra.Graph.UnitTest.SampleData
                     { NodeD, int.MaxValue },
                     { NodeE, int.MaxValue },
                     { NodeF, int.MaxValue },
-                    { NodeG, int.MaxValue }
+                    { NodeG, 0 }
                 },
                 PreviousNode = new Dictionary<Node, Node>
                 {
