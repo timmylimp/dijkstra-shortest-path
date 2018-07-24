@@ -7,6 +7,13 @@ namespace Dijkstra.Graph.Utils
 {
     public static class GraphExtensions
     {
+        /// <summary>
+        /// Validate the class with DataAnnotation.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="item"></param>
+        /// <param name="validationResults">Validate result output</param>
+        /// <returns>True if valid. Otherwise false.</returns>
         public static bool TryValidate<T>(this T item, out List<ValidationResult> validationResults)
         {
             var context = new ValidationContext(item, serviceProvider: null, items: null);
@@ -16,6 +23,11 @@ namespace Dijkstra.Graph.Utils
             return isValid;
         }
 
+        /// <summary>
+        /// Make collection of ValidationResult easier to read.
+        /// </summary>
+        /// <param name="validationResults"></param>
+        /// <returns>String describe all invalid result.</returns>
         public static string ToFlatternMessage(this IEnumerable<ValidationResult> validationResults)
         {
             var message = new StringBuilder();
